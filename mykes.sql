@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 20, 2024 at 04:21 PM
+-- Generation Time: Jul 25, 2025 at 07:35 PM
 -- Server version: 10.4.32-MariaDB
--- PHP Version: 8.0.30
+-- PHP Version: 8.1.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,116 +18,86 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `toko`
+-- Database: `mykes`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `barang`
+-- Table structure for table `absensi`
 --
 
-CREATE TABLE `barang` (
-  `id` int(12) NOT NULL,
-  `id_kategori` int(12) NOT NULL,
-  `inv_barang` varchar(100) NOT NULL,
-  `nama_barang` varchar(100) NOT NULL,
-  `satuan` varchar(100) NOT NULL,
-  `qty` int(100) NOT NULL,
-  `harga` int(100) NOT NULL,
-  `judul` varchar(100) NOT NULL,
-  `deskripsi` varchar(100) NOT NULL,
-  `note` varchar(100) NOT NULL,
-  `foto` varchar(100) NOT NULL,
-  `create_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `barang`
---
-
-INSERT INTO `barang` (`id`, `id_kategori`, `inv_barang`, `nama_barang`, `satuan`, `qty`, `harga`, `judul`, `deskripsi`, `note`, `foto`, `create_at`, `update_at`) VALUES
-(26, 2, 'TRB-20241214021121', 'Le Mineral', 'Pcs', 9, 3000, 'css', 'lorem ipsum dolor site amet. powerfull agist overta magis furire osrete girada', 'lorem ipsum dolor site amet', 'le-inerale.jpg', '2024-12-12 05:53:01', '2024-12-15 16:14:23'),
-(27, 1, 'TRB-20241214021141', 'Oreo', 'Pcs', 16, 50000, 'CSS', 'Powerful, extensible, and feature-packed frontend toolkit. Build and customize with Sass, utilize pr', 'lorem ipsum dolor site amet', 'oreo.jpg', '2024-12-12 05:54:06', '2024-12-15 16:13:31'),
-(30, 1, 'TRB-20241214021225', 'Tanggo  Wafer', 'Pcs', 12, 6000, 'CSS', 'Powerful, extensible, and feature-packed frontend toolkit. ', 'lorem ipsum dolor site amet', 'tanggo-wafer.jpg', '2024-12-12 12:49:15', '2024-12-15 16:36:29'),
-(31, 2, 'TRB-20241214021245', 'Teh Pucuk', 'Pcs', 12, 5000, 'CSS', 'Powerful, extensible, and feature-packed frontend toolkit. ', 'lorem ipsum dolor site amet', 'teh-pucuk.jpg', '2024-12-12 17:48:26', '2024-12-15 17:04:44'),
-(34, 1, 'TRB-20241220025621', 'Sari Roti', 'Pcs', 21, 5000, 'CSS', 'Powerful, extensible, and feature-packed frontend toolkit. Build and customize with Sass, utilize pr', 'lorem ipsum dolor site amet', 'Sari Roti.png', '2024-12-15 14:54:12', '2024-12-20 13:57:56'),
-(35, 1, 'TRB-20241220025825', 'Roma Malkis', 'Pcs', 16, 10000, 'CSS', 'Powerful, extensible, and feature-packed frontend toolkit. Build and customize with Sass, utilize pr', 'lorem ipsum dolor site amet', 'Roma-Malkis.jpg', '2024-12-15 16:09:03', '2024-12-20 13:59:08');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `customer`
---
-
-CREATE TABLE `pegawai` (
-  `id` int(12) NOT NULL,
-  `nama_lengkap` varchar(100) NOT NULL,
-  `no_telepon` varchar(50) NOT NULL,
-  `alamat` varchar(100) NOT NULL,
-  `create_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `customer`
---
-
-INSERT INTO `customer` (`id`, `nama_lengkap`, `no_telepon`, `alamat`, `create_at`, `update_at`) VALUES
-(0, 'Arya Wiraguna', '566556', 'bandung', '2024-11-30 13:00:02', '2024-11-30 13:00:02'),
-(0, 'ibnu ibrahim', '566556', 'jakarta', '2024-11-30 13:10:43', '2024-11-30 13:10:43');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `detail_paket`
---
-
-CREATE TABLE `detail_paket` (
-  `id` int(12) NOT NULL,
-  `id_penjualan` int(12) NOT NULL,
-  `id_barang` int(12) NOT NULL,
-  `jumlah` int(100) NOT NULL,
-  `harga` double(10,2) NOT NULL,
-  `total_harga` double(10,2) NOT NULL,
-  `sub_total` double(10,2) NOT NULL,
-  `nominal_bayar` double(10,2) NOT NULL,
-  `kembalian` double(10,2) NOT NULL,
-  `create_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `detail_paket`
---
-
-INSERT INTO `detail_paket` (`id`, `id_penjualan`, `id_barang`, `jumlah`, `harga`, `total_harga`, `sub_total`, `nominal_bayar`, `kembalian`, `create_at`, `update_at`) VALUES
-(38, 39, 26, 1, 3000.00, 3000.00, 3000.00, 4000.00, 1000.00, '2024-12-14 19:10:07', '2024-12-14 19:10:07'),
-(39, 40, 30, 2, 6000.00, 12000.00, 12000.00, 12000.00, 0.00, '2024-12-15 16:36:29', '2024-12-15 16:36:29');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `kategori_barang`
---
-
-CREATE TABLE `kategori_barang` (
+CREATE TABLE `absensi` (
   `id` int(11) NOT NULL,
-  `nama_kategori` varchar(100) NOT NULL,
-  `create_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `id_pegawai` int(11) NOT NULL,
+  `tanggal` date NOT NULL,
+  `jam_masuk` time DEFAULT NULL,
+  `jam_pulang` time DEFAULT NULL,
+  `keterangan` varchar(255) DEFAULT NULL,
+  `status_absen` int(5) NOT NULL,
+  `foto_absen` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `kategori_barang`
+-- Dumping data for table `absensi`
 --
 
-INSERT INTO `kategori_barang` (`id`, `nama_kategori`, `create_at`, `update_at`) VALUES
-(1, 'Makanan', '2024-12-12 05:02:51', '2024-12-12 05:02:51'),
-(2, 'Minuman', '2024-12-12 05:02:51', '2024-12-12 05:02:51'),
-(3, 'Baju', '2024-12-12 05:03:03', '2024-12-12 05:03:03'),
-(4, 'Celana', '2024-12-12 05:03:03', '2024-12-12 05:03:03');
+INSERT INTO `absensi` (`id`, `id_pegawai`, `tanggal`, `jam_masuk`, `jam_pulang`, `keterangan`, `status_absen`, `foto_absen`, `created_at`) VALUES
+(26, 28, '2025-07-25', '07:00:06', '18:56:18', '1', 1, NULL, '2025-07-25 16:56:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `absen_detail`
+--
+
+CREATE TABLE `absen_detail` (
+  `id` int(11) NOT NULL,
+  `absen_id` int(11) DEFAULT NULL,
+  `pegawai_id` int(11) DEFAULT NULL,
+  `tanggal` date DEFAULT NULL,
+  `terlambat` tinyint(1) DEFAULT NULL,
+  `menit_terlambat` int(11) DEFAULT NULL,
+  `pulang_cepat` tinyint(1) DEFAULT NULL,
+  `menit_pulang_cepat` int(11) DEFAULT NULL,
+  `catatan` text DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `absen_detail`
+--
+
+INSERT INTO `absen_detail` (`id`, `absen_id`, `pegawai_id`, `tanggal`, `terlambat`, `menit_terlambat`, `pulang_cepat`, `menit_pulang_cepat`, `catatan`, `created_at`) VALUES
+(15, 26, 28, '2025-07-25', 1, 656, 0, 0, '1', NULL),
+(16, 26, 28, '2025-07-25', 1, 656, 0, 0, '1', NULL),
+(17, 26, 28, '2025-07-25', 0, 0, 0, 0, '1', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `cuti`
+--
+
+CREATE TABLE `cuti` (
+  `id` int(12) NOT NULL,
+  `id_pegawai` int(25) NOT NULL,
+  `tgl_mulai` date NOT NULL,
+  `tgl_selesai` date NOT NULL,
+  `status` int(4) NOT NULL,
+  `lama_cuti` int(20) NOT NULL,
+  `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `create_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cuti`
+--
+
+INSERT INTO `cuti` (`id`, `id_pegawai`, `tgl_mulai`, `tgl_selesai`, `status`, `lama_cuti`, `update_at`, `create_at`) VALUES
+(13, 28, '2025-07-23', '2025-07-26', 2, 4, '2025-07-23 03:55:09', '2025-07-23 03:46:26'),
+(15, 22, '2025-07-23', '2025-07-25', 0, 3, '2025-07-23 13:36:51', '2025-07-23 13:36:28');
 
 -- --------------------------------------------------------
 
@@ -148,38 +118,57 @@ CREATE TABLE `level` (
 
 INSERT INTO `level` (`id`, `nama_level`, `create_at`, `update_at`) VALUES
 (1, 'admistrator', '2024-11-30 09:59:26', '2024-11-30 10:14:35'),
-(2, 'pimpinan', '2024-11-30 10:24:28', '2024-11-30 10:24:28'),
-(3, 'admin web', '2024-11-30 10:24:36', '2024-11-30 10:24:36'),
-(5, 'Pengunjung', '2024-11-30 16:06:28', '2024-11-30 16:06:28');
+(2, 'pegawai', '2025-05-26 03:17:19', '2025-07-25 16:22:34');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `penjualan`
+-- Table structure for table `pegawai`
 --
 
-CREATE TABLE `penjualan` (
+CREATE TABLE `pegawai` (
   `id` int(12) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `kode_transaksi` varchar(100) DEFAULT NULL,
-  `nama_pengguna` varchar(100) NOT NULL,
-  `email_pengguna` varchar(100) NOT NULL,
-  `telepon_pengguna` int(100) NOT NULL,
-  `status` tinyint(2) DEFAULT NULL,
+  `nama_lengkap` varchar(100) NOT NULL,
+  `no_telepon` varchar(50) NOT NULL,
+  `alamat` varchar(100) NOT NULL,
+  `periode_cuti` int(20) NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `penjualan`
+-- Dumping data for table `pegawai`
 --
 
-INSERT INTO `penjualan` (`id`, `id_user`, `kode_transaksi`, `nama_pengguna`, `email_pengguna`, `telepon_pengguna`, `status`, `create_at`, `update_at`) VALUES
-(35, 1, 'TR-20241214023158', 'admin', 'admin@gmail.com', 566556, 1, '2024-12-14 13:32:23', '2024-12-14 18:20:53'),
-(37, 2, 'TR-20241214073855', 'admin', 'admin@gmail.com', 566556, 1, '2024-12-14 18:39:16', '2024-12-14 18:42:42'),
-(38, 2, 'TR-20241214074446', 'admin', 'admin@gmail.com', 566556, 1, '2024-12-14 18:45:00', '2024-12-14 18:48:12'),
-(39, 6, 'TR-20241214080944', 'yono', 'yono@gmail.com', 56655666, 1, '2024-12-14 19:10:07', '2024-12-14 19:11:07'),
-(40, 2, 'TR-20241215053612', 'admin', 'admin@gmail.com', 566556, 0, '2024-12-15 16:36:29', '2024-12-15 16:36:29');
+INSERT INTO `pegawai` (`id`, `nama_lengkap`, `no_telepon`, `alamat`, `periode_cuti`, `create_at`, `update_at`) VALUES
+(0, 'Arya Wiraguna', '566556', 'bandung', 0, '2024-11-30 13:00:02', '2024-11-30 13:00:02'),
+(0, 'ibnu ibrahim', '566556', 'jakarta', 0, '2024-11-30 13:10:43', '2024-11-30 13:10:43');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `shifting`
+--
+
+CREATE TABLE `shifting` (
+  `id` int(11) NOT NULL,
+  `id_pegawai` int(11) NOT NULL,
+  `nama_shift` text NOT NULL,
+  `jam_masuk` time NOT NULL,
+  `jam_keluar` time NOT NULL,
+  `tgl_mulai` date NOT NULL,
+  `tgl_selesai` date NOT NULL,
+  `keterangan` text NOT NULL,
+  `create_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `shifting`
+--
+
+INSERT INTO `shifting` (`id`, `id_pegawai`, `nama_shift`, `jam_masuk`, `jam_keluar`, `tgl_mulai`, `tgl_selesai`, `keterangan`, `create_at`, `update_at`) VALUES
+(2, 22, 'Pagi', '07:00:00', '17:00:00', '2025-07-26', '2025-07-28', '', '2025-07-23 18:10:22', '2025-07-25 16:18:30');
 
 -- --------------------------------------------------------
 
@@ -203,10 +192,7 @@ CREATE TABLE `suggestion` (
 
 INSERT INTO `suggestion` (`id`, `id_user`, `deskripsi`, `catatan`, `foto`, `create_at`, `update_at`) VALUES
 (1, 1, 'ipsum dolor', 'lorem', '5.jpg', '2024-12-17 14:15:06', '2024-12-18 08:37:51'),
-(38, 2, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae tellus augue. Fusce gravida cu', 'lorm', '3.jpg', '2024-12-17 16:05:38', '2024-12-18 08:37:56'),
-(42, 3, ' Morbi ut nisi fringilla nunc egestas venenatis at a nibh. Aenean in elit nec sapien ullamcorper rho', 'Anton Bastian', '19.jpg', '2024-12-17 16:14:33', '2024-12-18 08:38:01'),
-(43, 1, ' Donec vel eros id metus bibendum eleifend in ut quam. Nam vehicula id orci et convallis.Agregos avi', 'lorem', '1.jpg', '2024-12-17 16:15:06', '2024-12-18 08:43:33'),
-(44, 5, 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vitae tellus augue. Fusce gravida cu', 'lorem', '', '2024-12-18 08:19:41', '2024-12-18 08:38:11');
+(43, 1, ' Donec vel eros id metus bibendum eleifend in ut quam. Nam vehicula id orci et convallis.Agregos avi', 'lorem', '1.jpg', '2024-12-17 16:15:06', '2024-12-18 08:43:33');
 
 -- --------------------------------------------------------
 
@@ -219,10 +205,13 @@ CREATE TABLE `user` (
   `id_level` int(12) NOT NULL,
   `nama_lengkap` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
+  `nip` varchar(16) NOT NULL,
+  `jabatan` varchar(20) NOT NULL,
   `no_telepon` varchar(100) NOT NULL,
   `alamat` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `foto` varchar(100) NOT NULL,
+  `periode_cuti` int(20) NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT current_timestamp(),
   `update_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -231,39 +220,37 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `id_level`, `nama_lengkap`, `email`, `no_telepon`, `alamat`, `password`, `foto`, `create_at`, `update_at`) VALUES
-(1, 1, 'admin', 'admin@gmail.com', '566556', 'jakarta', '123', '', '2024-11-30 10:18:59', '2024-12-18 08:37:13'),
-(2, 2, 'ibnu ibrahim', 'pimpinan@gmail.com', '566556', 'bandung', '123', '', '2024-11-30 14:28:41', '2024-12-18 08:37:20'),
-(3, 3, 'yoimia', 'adminAPK@gmail.com', '566556', 'jakarta', '123', '', '2024-11-30 16:05:54', '2024-12-18 08:37:24'),
-(4, 5, 'yono', 'yono@gmail.com', '56655666', 'jakarta', '123', '', '2024-11-30 16:06:58', '2024-12-18 08:37:28'),
-(5, 5, 'budi aryanto', 'budiiskander@gmail.com', '88003084747', 'Uhledar', '123', '', '2024-12-14 20:30:01', '2024-12-18 08:37:33'),
-(6, 5, 'ryo ibrahim', 'ryo@gmail.com', '7939393', 'Bogor', '123', '', '2024-12-14 20:59:05', '2024-12-18 08:37:38'),
-(7, 5, 'yohan2', 'yohan@gmail.com', '566556', 'sukabumi', '123', '5.jpg', '2024-12-15 17:54:19', '2024-12-18 08:37:42');
+INSERT INTO `user` (`id`, `id_level`, `nama_lengkap`, `email`, `nip`, `jabatan`, `no_telepon`, `alamat`, `password`, `foto`, `periode_cuti`, `create_at`, `update_at`) VALUES
+(1, 1, 'admin', 'admin@gmail.com', 'PSBD-20250526060', 'admin', '566556', 'jakarta', '123', '', 12, '2024-11-30 10:18:59', '2025-07-21 07:43:46'),
+(22, 2, 'hari budiarto', 'ari@gmail.com', 'PSBD-20250526065', 'staff', '93493434-34', 'Tuban', '123', '', 12, '2025-05-26 04:53:34', '2025-07-21 07:43:50'),
+(28, 2, 'danang S ', 'danangS@gmail.com', 'PSBD-20250721094', 'it', '934893490343490', 'Tuban', '123', '', 12, '2025-07-21 07:43:24', '2025-07-21 15:30:11'),
+(29, 2, 'Suharno', 'harno@gmail.com', 'PSBD-20250723062', 'Staff', '934893490343490', 'Jakarta', '123', '', 12, '2025-07-23 16:26:48', '2025-07-23 16:26:48');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `barang`
+-- Indexes for table `absensi`
 --
-ALTER TABLE `barang`
+ALTER TABLE `absensi`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_kategori` (`id_kategori`);
+  ADD KEY `id_pegawai` (`id_pegawai`);
 
 --
--- Indexes for table `detail_paket`
+-- Indexes for table `absen_detail`
 --
-ALTER TABLE `detail_paket`
+ALTER TABLE `absen_detail`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `detail_paket_ibfk_2` (`id_barang`),
-  ADD KEY `detail_paket_ibfk_3` (`id_penjualan`);
+  ADD KEY `absen_id` (`absen_id`),
+  ADD KEY `pegawai_id` (`pegawai_id`);
 
 --
--- Indexes for table `kategori_barang`
+-- Indexes for table `cuti`
 --
-ALTER TABLE `kategori_barang`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `cuti`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `cuti_ibfk_1` (`id_pegawai`);
 
 --
 -- Indexes for table `level`
@@ -272,10 +259,11 @@ ALTER TABLE `level`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `penjualan`
+-- Indexes for table `shifting`
 --
-ALTER TABLE `penjualan`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `shifting`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `shifting_ibfk_1` (`id_pegawai`);
 
 --
 -- Indexes for table `suggestion`
@@ -296,34 +284,34 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `barang`
+-- AUTO_INCREMENT for table `absensi`
 --
-ALTER TABLE `barang`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+ALTER TABLE `absensi`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT for table `detail_paket`
+-- AUTO_INCREMENT for table `absen_detail`
 --
-ALTER TABLE `detail_paket`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+ALTER TABLE `absen_detail`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `kategori_barang`
+-- AUTO_INCREMENT for table `cuti`
 --
-ALTER TABLE `kategori_barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `cuti`
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `level`
 --
 ALTER TABLE `level`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT for table `penjualan`
+-- AUTO_INCREMENT for table `shifting`
 --
-ALTER TABLE `penjualan`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+ALTER TABLE `shifting`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `suggestion`
@@ -335,24 +323,36 @@ ALTER TABLE `suggestion`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `barang`
+-- Constraints for table `absensi`
 --
-ALTER TABLE `barang`
-  ADD CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`id_kategori`) REFERENCES `kategori_barang` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `absensi`
+  ADD CONSTRAINT `absensi_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `detail_paket`
+-- Constraints for table `absen_detail`
 --
-ALTER TABLE `detail_paket`
-  ADD CONSTRAINT `detail_paket_ibfk_2` FOREIGN KEY (`id_barang`) REFERENCES `barang` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `detail_paket_ibfk_3` FOREIGN KEY (`id_penjualan`) REFERENCES `penjualan` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `absen_detail`
+  ADD CONSTRAINT `absen_detail_ibfk_1` FOREIGN KEY (`absen_id`) REFERENCES `absensi` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `absen_detail_ibfk_2` FOREIGN KEY (`pegawai_id`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `cuti`
+--
+ALTER TABLE `cuti`
+  ADD CONSTRAINT `cuti_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `shifting`
+--
+ALTER TABLE `shifting`
+  ADD CONSTRAINT `shifting_ibfk_1` FOREIGN KEY (`id_pegawai`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `suggestion`
